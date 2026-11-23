@@ -1,0 +1,18 @@
+[project]
+name = "glkit"
+version = "0.1.0"
+description = "Fee-aware live runs, evidence pages and web-evidence contract helpers for GenLayer Intelligent Contracts"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+live = ["genlayer-py>=0.19"]
+test = ["genlayer-test==0.29.2", "pytest"]
+
+[project.scripts]
+glkit = "glkit.__main__:main"
+
+[tool.setuptools]
+packages = ["glkit"]

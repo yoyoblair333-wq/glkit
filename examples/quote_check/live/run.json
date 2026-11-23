@@ -1,0 +1,170 @@
+{
+ "steps": [
+  {
+   "step": "deploy_quote_check",
+   "role": "owner",
+   "tx": "0xeffe223553f80fc67704c08369ebd86659bfd9c4227c8102fed7a450a43789ec",
+   "sent_at": "2026-11-23T18:53:52Z",
+   "status": "decided/accepted",
+   "result": "MAJORITY_AGREE",
+   "execution": "SUCCESS",
+   "votes": [
+    "agree",
+    "agree",
+    "agree",
+    "idle",
+    "idle"
+   ],
+   "error": null,
+   "fee_paid_wei": "100000000000010352",
+   "explorer": "https://explorer-studio.genlayer.com/tx/0xeffe223553f80fc67704c08369ebd86659bfd9c4227c8102fed7a450a43789ec",
+   "latest": {
+    "status": "finalized/accepted",
+    "result": "MAJORITY_AGREE",
+    "execution": "SUCCESS",
+    "votes": [
+     "agree",
+     "agree",
+     "agree",
+     "idle",
+     "idle"
+    ],
+    "error": null,
+    "fee_paid_wei": "100000000000010352"
+   }
+  },
+  {
+   "step": "check_real_quote",
+   "role": "caller",
+   "tx": "0x6bcb7a482eb45731b98936f482e778dcd3dfb073e522c45cbea60cc93f5fbe5c",
+   "sent_at": "2026-11-23T18:54:09Z",
+   "status": "decided/accepted",
+   "result": "MAJORITY_AGREE",
+   "execution": "SUCCESS",
+   "votes": [
+    "agree",
+    "agree",
+    "agree",
+    "idle",
+    "idle"
+   ],
+   "error": null,
+   "fee_paid_wei": "100000000000033882",
+   "explorer": "https://explorer-studio.genlayer.com/tx/0x6bcb7a482eb45731b98936f482e778dcd3dfb073e522c45cbea60cc93f5fbe5c",
+   "latest": {
+    "status": "finalized/accepted",
+    "result": "MAJORITY_AGREE",
+    "execution": "SUCCESS",
+    "votes": [
+     "agree",
+     "agree",
+     "agree",
+     "idle",
+     "idle"
+    ],
+    "error": null,
+    "fee_paid_wei": "100000000000033882"
+   }
+  },
+  {
+   "step": "check_invented_quote",
+   "role": "caller",
+   "tx": "0x6ace1947c3054936c6c30a7976ea5d9dd5c8b22fe891c4c4ff76e2fe1c93735d",
+   "sent_at": "2026-11-23T18:54:25Z",
+   "status": "decided/accepted",
+   "result": "MAJORITY_AGREE",
+   "execution": "SUCCESS",
+   "votes": [
+    "agree",
+    "agree",
+    "agree",
+    "idle",
+    "idle"
+   ],
+   "error": null,
+   "fee_paid_wei": "100000000000033882",
+   "explorer": "https://explorer-studio.genlayer.com/tx/0x6ace1947c3054936c6c30a7976ea5d9dd5c8b22fe891c4c4ff76e2fe1c93735d",
+   "latest": {
+    "status": "finalized/accepted",
+    "result": "MAJORITY_AGREE",
+    "execution": "SUCCESS",
+    "votes": [
+     "agree",
+     "agree",
+     "agree",
+     "idle",
+     "idle"
+    ],
+    "error": null,
+    "fee_paid_wei": "100000000000033882"
+   }
+  },
+  {
+   "step": "check_bad_url_must_revert",
+   "role": "caller",
+   "tx": "0xe23507669819c13fc61c7f0d8656509f991bbeff1cbc6ff0f0b51deeabe8e4c0",
+   "sent_at": "2026-11-23T18:54:39Z",
+   "status": "decided/accepted",
+   "result": "MAJORITY_AGREE",
+   "execution": "ERROR",
+   "votes": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "idle"
+   ],
+   "error": "[EXPECTED] url must use https://",
+   "fee_paid_wei": "100000000000010352",
+   "explorer": "https://explorer-studio.genlayer.com/tx/0xe23507669819c13fc61c7f0d8656509f991bbeff1cbc6ff0f0b51deeabe8e4c0",
+   "latest": {
+    "status": "finalized/accepted",
+    "result": "MAJORITY_AGREE",
+    "execution": "ERROR",
+    "votes": [
+     "agree",
+     "agree",
+     "agree",
+     "agree",
+     "idle"
+    ],
+    "error": "[EXPECTED] url must use https://",
+    "fee_paid_wei": "100000000000010352"
+   }
+  }
+ ],
+ "reads": {
+  "check_1": {
+   "checked_by": "0xa73a56482D02fE8Ca708724B29b18290e8e866c0",
+   "id": 1,
+   "page_size": "medium",
+   "quote": "standard mileage rates",
+   "status": "FOUND",
+   "url": "https://www.irs.gov/tax-professionals/standard-mileage-rates"
+  },
+  "check_2": {
+   "checked_by": "0xa73a56482D02fE8Ca708724B29b18290e8e866c0",
+   "id": 2,
+   "page_size": "medium",
+   "quote": "standard mileage rates are abolished",
+   "status": "NOT_FOUND",
+   "url": "https://www.irs.gov/tax-professionals/standard-mileage-rates"
+  },
+  "count": 2
+ },
+ "network": "Genlayer Studio Network",
+ "roles": {
+  "owner": "0x75a35a832fD2f77Def8Ae3259814B7252431f4b7",
+  "caller": "0xa73a56482D02fE8Ca708724B29b18290e8e866c0"
+ },
+ "funded_owner": true,
+ "funded_caller": true,
+ "deploy_quote_check_address": "0xF1897A04534abC8a46b4bc896E86377A413D55f9",
+ "contracts": {
+  "deploy_quote_check": {
+   "address": "0xF1897A04534abC8a46b4bc896E86377A413D55f9",
+   "explorer": "https://explorer-studio.genlayer.com/address/0xF1897A04534abC8a46b4bc896E86377A413D55f9"
+  }
+ },
+ "finished_at": "2026-11-23T18:54:49Z"
+}

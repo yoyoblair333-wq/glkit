@@ -1,0 +1,22 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    env:
+      GENVM_VERSION: v0.2.16
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Direct-mode test environment
+        run: pip install genlayer-test==0.29.2 pytest genvm-linter==0.11.0
+      - name: Bundled example is up to date and lint-clean
+        run: |
+          python -m glkit bundle examples/quote_check/quote_check.src.py /tmp/qc.py
+          diff /tmp/qc.py examples/quote_check/quote_check.py
+          genvm-lint check examples/quote_check/quote_check.py
+      - name: Tests (pure + direct mode)
+        run: python -m pytest -q tests

@@ -1,0 +1,35 @@
+{
+ "network": "studionet",
+ "contracts": {
+  "deploy": {
+   "address": "0xb3F7417f8A828f2416427D7760f47C41e2F6d1B7",
+   "explorer": "https://explorer-studio.genlayer.com/address/0xb3F7417f8A828f2416427D7760f47C41e2F6d1B7"
+  }
+ },
+ "roles": {
+  "owner": "0xC38DaF78C7522d01E372F70Ad41E1e86bb25d76d"
+ },
+ "steps": [
+  {
+   "step": "deploy",
+   "tx": "0xf69914867b9e60c9291b6cf0cfcc7ab6949736e43f5fb38452a530d80bdd3b32",
+   "status": "decided/accepted",
+   "result": "MAJORITY_AGREE",
+   "execution": "SUCCESS",
+   "votes": [
+    "agree",
+    "agree",
+    "agree",
+    "agree",
+    "idle"
+   ],
+   "error": null
+  }
+ ],
+ "reads": {
+  "check_1": {
+   "status": "FOUND"
+  }
+ },
+ "finished_at": "2026-11-23T19:00:00Z"
+}
