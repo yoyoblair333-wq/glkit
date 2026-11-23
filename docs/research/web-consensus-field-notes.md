@@ -19,13 +19,23 @@ All numbers come from the live-run JSON files in each repository, which record w
 
 ## 2. Results
 
-TALLY_TABLE
+| Run | txs | majority_agree | finalized | exec_error | vote_agree | vote_disagree | vote_timeout | vote_idle |
+|---|---|---|---|---|---|---|---|---|
+| propcourt | 24 | 24 | 24 | 0 | 85 | 0 | 0 | 35 |
+| priceguard | 16 | 16 | 15 | 0 | 52 | 0 | 0 | 28 |
+| rulereader | 6 | 6 | 6 | 0 | 18 | 1 | 0 | 11 |
+| verdict (SettlementCourt + ReputationLedger) | 19 | 19 | 19 | 2 | 67 | 0 | 2 | 26 |
+| glkit (QuoteCheck) | 4 | 4 | 4 | 1 | 13 | 0 | 0 | 7 |
+| domainproof | 10 | 10 | 10 | 1 | 37 | 0 | 0 | 13 |
+| **total** | 79 | 79 | 78 | 4 | 272 | 1 | 2 | 120 |
+
+`finalized` counts the status stored in each run file at its last refresh. One PriceGuard transaction was still recorded as decided when that file was last written.
 
 How to read the vote columns: studionet seats five validators per round. `agree` and `disagree` are validators that compared their own result with the leader's. `idle` validators did not take part in that round. A `timeout` validator did not finish in its allotted time.
 
 **Finding 1: when the compared record is canonical, disagreement is rare.** Every transaction reached `MAJORITY_AGREE`. Across all agree/disagree votes cast, exactly **one** validator disagreed. That was on RuleReader's first read of the IRS mileage-rate page, and the round still reached a majority. That page lists three periods (Jan–Jun, Jul–Dec, prior year) with overlapping numbers. A subject-scoped read of a multi-period page is the hardest case in the set, so the single disagreement landing there is consistent with the design and is not noise.
 
-**Finding 2: expected reverts reach consensus too.** The rows with `exec_error` are deliberate adversarial calls: an unredacted case refused before any model call, an appeal after a case was final, and an `http://` URL. Validators agreed that each one should fail. A run that records only successes is weaker evidence than one that shows the contract refusing what it should refuse.
+**Finding 2: expected reverts reach consensus too.** The rows with `exec_error` are deliberate adversarial calls: an unredacted case refused before any model call, an appeal after a case was final, an `http://` URL, and a URL passed where a bare domain was required. Validators agreed that each one should fail. A run that records only successes is weaker evidence than one that shows the contract refusing what it should refuse.
 
 **Finding 3: bigger model panels run into time limits first.** Both `timeout` votes in the dataset are on SettlementCourt's appeal transactions: the 5-juror Tier 2 of case 1 and the 7-juror Tier 3 of case 4. Each validator runs one model pass per juror, so runtime grows with the panel size. The rounds still reached a majority, but this is the first place a builder will see `UNDETERMINED` if they under-allocate time. Since the November 2026 fee change, the allocation is explicit: leader and validator time units must sit in 30..600 (`PhaseTimeoutOutOfBounds(v,30,600)` otherwise). Panel-style contracts should request the maximum.
 
@@ -55,7 +65,7 @@ Each of these cost real time, and each is now a rule in glkit.
 
 ## 5. Limits of this study
 
-- About 75 transactions across six contracts is a field report, not a benchmark. Most of my inputs were chosen to be clear-cut, and the single disagreement shows where harder inputs live: multi-period, multi-product pages.
+- 79 transactions across six contracts is a field report, not a benchmark. Most of my inputs were chosen to be clear-cut, and the single disagreement shows where harder inputs live: multi-period, multi-product pages.
 - Studionet validators are a test network. Model mix, timeouts and fee levels on a production network may differ.
 - Idle and timeout counts depend on network load at the time of each run.
 
